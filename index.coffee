@@ -11,7 +11,7 @@ class Rrq
           return dir
       dir = @upperDir(dir)
       if dir is '/'
-        throw new Error('Please smake a [.pddrc] file in the project root directory')
+        throw new Error('Please make a [.rrqrc] file in the project root directory')
 
   @upperDir:(dirPath)->
     arr = dirPath.split(path.sep)

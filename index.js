@@ -24,7 +24,7 @@
         }
         dir = this.upperDir(dir);
         if (dir === '/') {
-          throw new Error('Please smake a [.pddrc] file in the project root directory');
+          throw new Error('Please make a [.rrqrc] file in the project root directory');
         }
       }
     };
