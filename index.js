@@ -30,13 +30,14 @@
     };
 
     Rrq.upperDir = function(dirPath) {
-      var arr, i, newdir, _i, _ref;
+      var arr;
+      dirPath = path.normalize(dirPath);
       arr = dirPath.split(path.sep);
-      newdir = '/';
-      for (i = _i = 1, _ref = arr.length - 1; 1 <= _ref ? _i < _ref : _i > _ref; i = 1 <= _ref ? ++_i : --_i) {
-        newdir = path.join(newdir, arr[i]);
+      if (arr[arr.length - 1] === '') {
+        arr.pop();
       }
-      return newdir;
+      arr.pop();
+      return arr.join(path.sep);
     };
 
     Rrq.require2 = function(_path) {

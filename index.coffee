@@ -12,13 +12,14 @@ class Rrq
       dir = @upperDir(dir)
       if dir is '/'
         throw new Error('Please make a [.rrqrc] file in the project root directory')
-
+        
   @upperDir:(dirPath)->
+    dirPath = path.normalize(dirPath)
     arr = dirPath.split(path.sep)
-    newdir = '/'
-    for i in [1...arr.length-1]
-      newdir = path.join(newdir,arr[i])
-    return newdir
+    if arr[arr.length-1] is ''
+      arr.pop()
+    arr.pop()
+    return arr.join(path.sep)
   @require2:(_path)=>
     root = @projectRoot()
     return require path.join(root,_path)
