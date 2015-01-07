@@ -18,26 +18,15 @@
         files = fs.readdirSync(dir);
         for (_i = 0, _len = files.length; _i < _len; _i++) {
           file = files[_i];
-          if (file === '.rrqrc') {
+          if (/^\.rrq/.test(file)) {
             return dir;
           }
         }
-        dir = this.upperDir(dir);
+        dir = path.dirname(dir);
         if (dir === '/') {
           throw new Error('Please make a [.rrqrc] file in the project root directory');
         }
       }
-    };
-
-    Rrq.upperDir = function(dirPath) {
-      var arr;
-      dirPath = path.normalize(dirPath);
-      arr = dirPath.split(path.sep);
-      if (arr[arr.length - 1] === '') {
-        arr.pop();
-      }
-      arr.pop();
-      return arr.join(path.sep);
     };
 
     Rrq.require2 = function(_path) {

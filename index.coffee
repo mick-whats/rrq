@@ -7,19 +7,12 @@ class Rrq
     while 1
       files = fs.readdirSync dir
       for file in files
-        if file is '.rrqrc'
+        if /^\.rrq/.test(file)
           return dir
-      dir = @upperDir(dir)
+      dir = path.dirname(dir)
       if dir is '/'
         throw new Error('Please make a [.rrqrc] file in the project root directory')
-        
-  @upperDir:(dirPath)->
-    dirPath = path.normalize(dirPath)
-    arr = dirPath.split(path.sep)
-    if arr[arr.length-1] is ''
-      arr.pop()
-    arr.pop()
-    return arr.join(path.sep)
+
   @require2:(_path)=>
     root = @projectRoot()
     return require path.join(root,_path)
