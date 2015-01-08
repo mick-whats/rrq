@@ -36,7 +36,12 @@
     };
 
     Rrq.requirePath = function(dirname, directoryPath) {
-      return path.relative(dirname, path.join(Rrq.projectRoot(), directoryPath));
+      var p;
+      p = path.relative(dirname, path.join(Rrq.projectRoot(), directoryPath));
+      if (!/^\.\./.test(p)) {
+        p = './' + p;
+      }
+      return p;
     };
 
     return Rrq;

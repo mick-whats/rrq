@@ -17,5 +17,8 @@ class Rrq
     root = @projectRoot()
     return require path.join(root,_path)
   @requirePath:(dirname,directoryPath)=>
-    return path.relative(dirname, path.join(@projectRoot(),directoryPath))
+    p = path.relative(dirname, path.join(@projectRoot(),directoryPath))
+    unless /^\.\./.test(p)
+      p = './' + p
+    return p
 module.exports = Rrq
