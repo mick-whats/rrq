@@ -1,6 +1,7 @@
 # Logs
 logs
 *.log
+memo
 
 # Runtime data
 pids
@@ -26,3 +27,5 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+.DS_Store
+.rrq*
