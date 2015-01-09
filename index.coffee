@@ -1,3 +1,8 @@
+###
+v1.1.0
+2015/01/09 17:10
+###
+
 fs =require 'fs'
 path = require 'path'
 util = require 'util'
