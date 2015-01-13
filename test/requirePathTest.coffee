@@ -42,3 +42,7 @@ describe 'require module test',->
     p = rq.requirePath(__dirname,'test/a/a')
     a = require p
     assert.equal 'bbq',a.get_b2().val
+  it 'confpath is /^\.rrq/', ->
+    p = rq.confpath()
+    assert.match p, /^\//
+    assert.match path.basename(p), /^.rrq/

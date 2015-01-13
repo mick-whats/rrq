@@ -15,7 +15,11 @@ v1.1.0
   util = require('util');
 
   Rrq = (function() {
+    var _confpath;
+
     function Rrq() {}
+
+    _confpath = '';
 
     Rrq.projectRoot = function() {
       var dir, file, files, _i, _len;
@@ -25,6 +29,7 @@ v1.1.0
         for (_i = 0, _len = files.length; _i < _len; _i++) {
           file = files[_i];
           if (/^\.rrq/.test(file)) {
+            _confpath = file;
             return dir;
           }
         }
@@ -36,6 +41,12 @@ v1.1.0
     };
 
     Rrq.root = Rrq.projectRoot;
+
+    Rrq.confpath = function() {
+      var r;
+      r = this.root();
+      return path.join(r, _confpath);
+    };
 
     Rrq.require2 = function(_path) {
       var root;
