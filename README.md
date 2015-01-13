@@ -1,5 +1,11 @@
-# RRQ
+# RRQ [![npm version](https://badge.fury.io/js/rrq.svg)](http://badge.fury.io/js/rrq)
+
+[![Build Status](https://travis-ci.org/mick-whats/rrq.svg?branch=master)](https://travis-ci.org/mick-whats/rrq)
+[![Coverage Status](https://img.shields.io/coveralls/mick-whats/rrq.svg)](https://coveralls.io/r/mick-whats/rrq?branch=master)
+
 requireをルートディレクトリからの指定で呼び出せるようになります。
+
+
 
 ```coffee
 #before
@@ -56,6 +62,8 @@ c3 test ok
 
 ```coffee
 rrq = require('rrq').require2
+# or
+# rrq = require('rrq').require
 
 # use of require
 c1 = require('../../pathTest/c/cc/c')
@@ -83,7 +91,22 @@ rq.requirePath(__dirname,'pathTest/c/cc/c')
 ```coffee
 rq = require('rrq')
 root = rq.projectRoot()
+# or
+# root = rq.root()
+
 console.log root
 
 # /Users/hoge/path/to/myProject
+```
+
+### confpath()
+プロジェクトルートに置いたファイルのパスを取得
+
+```coffee
+rq = require('rrq')
+conf = rq.confpath()
+
+# このファイルに設定等を書いて読み込む時に使います
+# 例
+config = require('yaml-config').readConfig(conf)
 ```
