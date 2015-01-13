@@ -5,6 +5,7 @@ project rootに設定したファイル名を設定してみるtest
 assert = require('chai').assert
 fs = require 'fs'
 projectRoot = require('..').projectRoot
+# projectRoot = require('..').projectRoot
 tf = require('./testFuncs')
 describe 'root filename is...',->
   root = ''
