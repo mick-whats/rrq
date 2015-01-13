@@ -1,6 +1,6 @@
 {
   "name": "rrq",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "I can specify the path require from the root directory",
   "main": "index.js",
   "scripts": {
