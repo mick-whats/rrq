@@ -17,10 +17,11 @@ class Rrq
       dir = path.dirname(dir)
       if dir is '/'
         throw new Error('Please make a [.rrqrc] file in the project root directory')
-
+  @root:@projectRoot
   @require2:(_path)=>
     root = @projectRoot()
     return require path.join(root,_path)
+  @require:@require2
   @requirePath:(dirname,directoryPath)=>
     p = path.relative(dirname, path.join(@projectRoot(),directoryPath))
     unless /^\.\./.test(p)

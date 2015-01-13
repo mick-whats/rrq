@@ -34,3 +34,11 @@ describe 'require module test',->
   it 'require a -> b', ->
     a = rrq('test/a/a')
     assert.equal 'bbq',a.get_b().val
+  it 'root() is projectRoot()',->
+    a = require('..').root()
+    b = require('..').projectRoot()
+    assert.deepEqual a,b
+  it 'require() is require2()',->
+    a = require('..').require
+    b = require('..').require2
+    assert.deepEqual a,b

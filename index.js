@@ -35,11 +35,15 @@ v1.1.0
       }
     };
 
+    Rrq.root = Rrq.projectRoot;
+
     Rrq.require2 = function(_path) {
       var root;
       root = Rrq.projectRoot();
       return require(path.join(root, _path));
     };
+
+    Rrq.require = Rrq.require2;
 
     Rrq.requirePath = function(dirname, directoryPath) {
       var p;
