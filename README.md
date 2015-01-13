@@ -1,5 +1,11 @@
-# RRQ
+# RRQ [![npm version](https://badge.fury.io/js/rrq.svg)](http://badge.fury.io/js/rrq)
+
+[![Build Status](https://travis-ci.org/mick-whats/rrq.svg?branch=master)](https://travis-ci.org/mick-whats/rrq)
+[![Coverage Status](https://img.shields.io/coveralls/mick-whats/rrq.svg)](https://coveralls.io/r/mick-whats/rrq?branch=master)
+
 requireをルートディレクトリからの指定で呼び出せるようになります。
+
+
 
 ```coffee
 #before
@@ -16,6 +22,10 @@ touch .rrqrc
 ```
 インストール後、プロジェクトルートに[.rrqrc]というファイルを作成します。空で構いません。  
 このファイルのある場所をルートと認識してパスを解析します。
+
+* ファイル名は[.rrqrc]でなくても[.rrq]で始まるものならなんでも構いません。
+* 例[.rrq][.rrqrc][.rrq.conf.yaml]等
+
 ## how to use
 
 
@@ -52,6 +62,8 @@ c3 test ok
 
 ```coffee
 rrq = require('rrq').require2
+# or
+# rrq = require('rrq').require
 
 # use of require
 c1 = require('../../pathTest/c/cc/c')
@@ -64,7 +76,9 @@ c2('c2')
 
 ### requirePath(from,to)
 ルートディレクトリからのパスでrequireするパスを取得する  
-[path.relative(from, to)](http://nodejs.jp/nodejs.org_ja/api/path.html#path_path_relative_from_to) と同じですが、fromを__dirname、toをルートからのパスで指定できます。
+[path.relative(from, to)](http://nodejs.jp/nodejs.org_ja/api/path.html#path_path_relative_from_to) と同じですが、fromを__dirname、toをルートからのパスで指定できます。  
+第一引数は `__dirname`で固定です。
+path.relative(from, to)との違いは、[../]で始まるパス以外は先頭に[./]を付与します。
 
 ```coffee
 rq = require('rrq')
@@ -77,7 +91,22 @@ rq.requirePath(__dirname,'pathTest/c/cc/c')
 ```coffee
 rq = require('rrq')
 root = rq.projectRoot()
+# or
+# root = rq.root()
+
 console.log root
 
 # /Users/hoge/path/to/myProject
+```
+
+### confpath()
+プロジェクトルートに置いたファイルのパスを取得
+
+```coffee
+rq = require('rrq')
+conf = rq.confpath()
+
+# このファイルに設定等を書いて読み込む時に使います
+# 例
+config = require('yaml-config').readConfig(conf)
 ```
