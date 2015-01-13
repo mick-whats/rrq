@@ -4,7 +4,9 @@
   "description": "I can specify the path require from the root directory",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers coffee:coffee-script/register --reporter spec test/"
+    "test": "mocha --compilers coffee:coffee-script/register --reporter spec test/",
+    "test": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "test": "mocha"
   },
   "keywords": [
     "require"
@@ -19,6 +21,8 @@
   "devDependencies": {
     "chai": "^1.10.0",
     "coffee-script": "^1.8.0",
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.5",
     "mocha": "^2.1.0"
   }
 }
